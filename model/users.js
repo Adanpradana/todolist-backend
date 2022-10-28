@@ -1,29 +1,34 @@
 const Sequelize = require("sequelize");
 const db = require("../database/connection");
-const todolist = db.define(
-  "todolist",
+const users = db.define(
+  "users",
   {
-    todo_id: {
+    id: {
       type: Sequelize.INTEGER,
+      aoutoIncrement: true,
       primaryKey: true,
       allowNull: false,
     },
-    todo_list: {
+    user_name: {
       type: Sequelize.STRING,
       allowNull: false,
+      unique: true,
     },
-    deskripsi: {
+    email: {
       type: Sequelize.STRING,
-      allowNull: true,
+      allowNull: false,
+      unique: true,
     },
-    isdone: {
-      type: Sequelize.TINYINT,
-      allowNull: true,
+    userID: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
     },
   },
+
   {
     freezeTableName: "true",
     timestamps: false,
   }
 );
-module.exports = todolist;
+
+module.exports = users;

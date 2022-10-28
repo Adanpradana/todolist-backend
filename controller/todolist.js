@@ -5,8 +5,8 @@ const get = async (req, res) => {
   try {
     await model.todolist
       .findAll({
-        attributes: ["todo_list", "isdone"],
-        limit: 5,
+        attributes: ["todo_id", "todo_list", "isdone"],
+        // limit: 5,
       })
       .then((result) => {
         result.length > 0 ? res.status(200).json({ message: "success get all data", data: result }) : res.status(400).json({ message: "failed load data" });
@@ -18,15 +18,15 @@ const get = async (req, res) => {
 
 const post = async (req, res) => {
   try {
-    const { id, todo_list, deskripsi, isdone } = req.body;
+    const { todo_id, userID, todo_list, deskripsi, isdone } = req.body;
     const todolist = await model.todolist.create({
-      id,
+      todo_id,
       todo_list,
       deskripsi,
       isdone,
     });
     res.status(201).json({
-      message: "success get todolist",
+      message: "success add todolist !",
       data: todolist,
     });
   } catch (error) {
@@ -47,7 +47,7 @@ const update = async (req, res) => {
       },
       {
         where: {
-          id: req.params.id,
+          todo_id: req.params.todo_id,
         },
       }
     );
@@ -58,11 +58,11 @@ const update = async (req, res) => {
 };
 
 const find = async (req, res) => {
-  const { id } = req.query;
+  const { todo_id } = req.query;
   try {
     const result = await model.todolist.findOne({
       where: {
-        id,
+        todo_id,
       },
     });
     res.status(200).json({ message: "data found", data: result });
@@ -88,12 +88,12 @@ const search = async (req, res) => {
 };
 
 const destroy = async (req, res) => {
-  const { id } = req.params;
+  const { todo_id } = req.params;
   try {
     await model.todolist
       .destroy({
         where: {
-          id,
+          todo_id,
         },
       })
       .then(res.status(200).json({ message: "success delete todolist !" }));

@@ -1,3 +1,5 @@
-const controller = require("./todolist");
+const todolist = require("./todolist");
+const users = require("./users");
 
-module.exports = controller;
+module.exports = { todolist, users };
+// module.exports = users;
