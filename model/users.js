@@ -19,10 +19,6 @@ const users = db.define(
       allowNull: false,
       unique: true,
     },
-    userID: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-    },
   },
 
   {
@@ -30,5 +26,4 @@ const users = db.define(
     timestamps: false,
   }
 );
-
 module.exports = users;

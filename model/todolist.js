@@ -20,10 +20,15 @@ const todolist = db.define(
       type: Sequelize.TINYINT,
       allowNull: true,
     },
+    userId: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
   },
   {
     freezeTableName: "true",
     timestamps: false,
   }
 );
+
 module.exports = todolist;

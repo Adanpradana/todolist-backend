@@ -3,7 +3,8 @@ const express = require("express");
 const app = express();
 const port = 3310;
 const router = express.Router();
-const { todolist, users } = require("./controller/controller");
+const { todolist } = require("./controller/controller");
+const { users } = require("./controller/controller");
 
 const cors = require("cors");
 
