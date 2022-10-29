@@ -6,6 +6,11 @@ const get = async (req, res) => {
     await model.todolist
       .findAll({
         attributes: ["todo_id", "todo_list", "isdone"],
+        include: [
+          {
+            model: model.users,
+          },
+        ],
         // limit: 5,
       })
       .then((result) => {

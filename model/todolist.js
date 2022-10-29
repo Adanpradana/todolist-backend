@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const db = require("../database/connection");
+const users = require("./users");
 const todolist = db.define(
   "todolist",
   {
@@ -26,9 +27,12 @@ const todolist = db.define(
     },
   },
   {
-    freezeTableName: "true",
+    freezeTableName: true,
     timestamps: false,
   }
 );
+
+todolist.hasOne(users, { foreignKey: "id" });
+todolist.hasOne(users, { foreignKey: "id" });
 
 module.exports = todolist;

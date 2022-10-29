@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const db = require("../database/connection");
+
 const users = db.define(
   "users",
   {
@@ -19,11 +20,13 @@ const users = db.define(
       allowNull: false,
       unique: true,
     },
+    todoId: Sequelize.INTEGER,
   },
 
   {
-    freezeTableName: "true",
+    freezeTableName: true,
     timestamps: false,
   }
 );
+
 module.exports = users;
