@@ -22,11 +22,11 @@ const todolist = db.define(
     },
     userId: {
       type: Sequelize.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
   },
   {
-    freezeTableName: "true",
+    freezeTableName: true,
     timestamps: false,
   }
 );

@@ -9,7 +9,7 @@ const get = async (req, res) => {
         // limit: 5,
       })
       .then((result) => {
-        result.length > 0 ? res.status(200).json({ message: "success get all data", data: result }) : res.status(400).json({ message: "failed load data" });
+        result.length > 0 ? res.status(200).json({ message: "success get all data", data: result }) : res.status(400).json({ message: "no data found !" });
       });
   } catch (error) {
     res.status(404).json({ message: error.message });
