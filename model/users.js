@@ -26,4 +26,5 @@ const users = db.define(
     timestamps: false,
   }
 );
+users.removeAttribute("id");
 module.exports = users;

@@ -5,6 +5,11 @@ const get = async (req, res) => {
   try {
     await model.todolist
       .findAll({
+        include: [
+          {
+            model: model.users,
+          },
+        ],
         attributes: ["todo_id", "todo_list", "isdone"],
         // limit: 5,
       })
