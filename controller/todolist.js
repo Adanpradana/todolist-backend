@@ -5,7 +5,7 @@ const get = async (req, res) => {
   try {
     await model.todolist
       .findAll({
-        attributes: ["todo_id", "todo_list", "isdone"],
+        // attributes: ["todo_id", "todo_list", "isdone"],
         // limit: 5,
       })
       .then((result) => {
@@ -18,12 +18,13 @@ const get = async (req, res) => {
 
 const post = async (req, res) => {
   try {
-    const { todo_id, userID, todo_list, deskripsi, isdone } = req.body;
+    const { todo_id, userId, todo_list, deskripsi, isdone } = req.body;
     const todolist = await model.todolist.create({
       todo_id,
       todo_list,
       deskripsi,
       isdone,
+      userId,
     });
     res.status(201).json({
       message: "success add todolist !",
@@ -37,13 +38,14 @@ const post = async (req, res) => {
 };
 
 const update = async (req, res) => {
-  const { todo_list, deskripsi, isdone } = req.body;
+  const { todo_list, deskripsi, isdone, userId } = req.body;
   try {
     const update = await model.todolist.update(
       {
         todo_list,
         deskripsi,
         isdone,
+        userId,
       },
       {
         where: {

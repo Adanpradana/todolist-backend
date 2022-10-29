@@ -19,7 +19,8 @@ router.put("/main/api/:todo_id", todolist.update);
 router.delete("/main/api/:todo_id", todolist.destroy);
 
 //users
-router.get("/main/api/users", users);
+router.get("/main/api/users", users.getUsers);
+router.get("/main/api/usertodo", users.getUsersTodo);
 
 app.use(router);
 app.listen(port, () => console.log(`listening in port ${port}`));
