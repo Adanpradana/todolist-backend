@@ -1,3 +1,4 @@
+const { where } = require("sequelize");
 const model = require("../model/model");
 
 const getUsers = async (req, res) => {
@@ -28,8 +29,25 @@ const getUsersTodo = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+const createUser = async (req, res) => {
+  const { id, user_name, email } = req.body;
+  try {
+    await model.users
+      .create({
+        id,
+        user_name,
+        email,
+      })
+      .then((result) => {
+        result.length > 0 ? res.status(200).json({ message: "success create users", data: result }) : res.status(400).json({ message: "failed create users!" });
+      });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
 
 module.exports = {
   getUsers,
   getUsersTodo,
+  createUser,
 };
