@@ -1,0 +1,207 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Todolist API",
+    "version": "1.0",
+    "description": "todolist APP will ease your time management",
+    "contact": {
+      "name": "Adan Pradana",
+      "email": "adanrizkahariz@gmail.com",
+      "url": "github.com/Adanpradana"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://{environment}/main/api",
+      "description": "localhost",
+      "variables": {
+        "environment": {
+          "default": "localhost:3310",
+          "enum": ["localhost:3310", "dev", "prod"]
+        }
+      }
+    }
+  ],
+  "externalDocs": {
+    "description": "instagram adan",
+    "url": "https://instagram.com/Adanpradana"
+  },
+  "tags": [
+    {
+      "name": "Users",
+      "description": "account"
+    },
+    {
+      "name": "todolist",
+      "description": "get all todolist"
+    },
+    {
+      "name": "Users & todolist",
+      "description": "join table user to many todolist"
+    }
+  ],
+  "paths": {
+    "/main/api/users": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "get all users data",
+        "description": "user login list",
+        "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "query",
+            "description": "is include id",
+            "schema": {
+              "type": "integer",
+              "nullable": false
+            }
+          },
+          {
+            "name": "user_name",
+            "in": "query",
+            "description": "is include user_name",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": false
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "is include email",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Users"],
+        "summary": "post/create user login",
+        "description": "user login list",
+        "parameters": [
+          {
+            "name": "user_name",
+            "in": "query",
+            "description": "is include user_name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "is include email",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/main/api/{user_name}": {
+      "get": {
+        "tags": ["Users"],
+        "description": "get user by name",
+        "parameters": [
+          {
+            "name": "get user login ",
+            "in": "path",
+            "required": true,
+            "description": "get user by user_name",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/main/api/todolist": {
+      "get": {
+        "tags": ["todolist"],
+        "description": "get all user todolist",
+        "parameters": [
+          {
+            "name": "get all todolist data",
+            "required": false,
+            "in": "query",
+            "description": "is include todolist",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": ["todolist"],
+        "summary": "create todolist",
+        "description": "create todolist",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/main/api/{todo_id}": {
+      "put": {
+        "tags": ["todolist"],
+        "description": "update todolist",
+        "parameters": [
+          {
+            "name": "edit todolist",
+            "in": "path",
+            "required": true,
+            "description": "edit todolist by id",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["todolist"],
+        "description": "delete todolist",
+        "parameters": [
+          {
+            "name": "delete todolist",
+            "in": "path",
+            "required": true,
+            "description": "delete todolist by id",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
