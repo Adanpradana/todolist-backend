@@ -3,6 +3,7 @@ const model = require("../model/model");
 const bcrypt = require("bcrypt");
 const user = require("../database/connection");
 const bcryptCheck = require("../utils/bcrypt");
+
 const getUsers = async (req, res) => {
   try {
     await model.users.findAll().then((result) => {
@@ -28,11 +29,11 @@ const createUser = async (req, res) => {
         password: encryptPassword,
       })
       .then((result) => {
-        result.length > 0
-          ? res
-              .status(200)
-              .json({ message: "username created 🙌", data: result })
-          : res.status(400).json({ message: "failed create users!" });
+        if (result.length > 0) {
+          res
+            .status(200)
+            .json({ message: "username created 🙌", data: result });
+        }
       });
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -73,8 +74,6 @@ const editUser = async (req, res) => {
 //   } catch (error) {}
 // };
 
-
-
 // const findUser = async (req, res) => {
 //   const { id } = req.params;
 //   try {
@@ -111,9 +110,9 @@ const getUsersTodo = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+user.sync();
 module.exports = {
   getUsers,
-  getUsersTodo,
+  editUser,
   createUser,
-  findUser,
 };
