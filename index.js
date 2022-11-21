@@ -13,9 +13,10 @@ app.use(cors());
 
 //users
 router.get("/main/api/users", users.getUsers);
-router.get("/main/api/users/todolist", users.getUsersTodo);
 router.post("/main/api/users", users.createUser);
-router.get("/main/api/users/:id", users.findUser);
+router.put("/main/api/users/:id", users.findUser);
+router.delete("/main/api/users/:id", users.findUser);
+router.get("/main/api/users/todolist", users.getUsersTodo);
 
 router.get("/main/api/todolist", todolist.get);
 router.get("/main/api/todolist/search", todolist.search);
