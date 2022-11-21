@@ -46,8 +46,23 @@ const createUser = async (req, res) => {
   }
 };
 
+const findUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await model.users.findAll({
+      where: {
+        id,
+      },
+    });
+    res.status(200).json({ message: "success !", data: result });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getUsers,
   getUsersTodo,
   createUser,
+  findUser,
 };

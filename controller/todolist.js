@@ -97,7 +97,7 @@ const destroy = async (req, res) => {
         where: {
           todo_id,
         },
-      })
+      }) 
       .then(res.status(200).json({ message: "success delete todolist !" }));
   } catch (error) {
     res.status(400).json({ message: error.message });

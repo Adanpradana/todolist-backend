@@ -87,6 +87,14 @@
         "tags": ["Users"],
         "summary": "post/create user login",
         "description": "user login list",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
         "parameters": [
           {
             "name": "user_name",
@@ -114,10 +122,18 @@
         }
       }
     },
-    "/main/api/{user_name}": {
+    "/main/api/user/{user_name}": {
       "get": {
         "tags": ["Users"],
         "description": "get user by name",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
         "parameters": [
           {
             "name": "get user login ",
