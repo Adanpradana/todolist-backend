@@ -41,7 +41,7 @@ const createUser = async (req, res) => {
 };
 
 const editUser = async (req, res) => {
-  const { user_name, email, password, newPassword } = req.body;
+  const { id, user_name, email, password, newPassword } = req.body;
   const compare = await bcryptCheck(id, password);
   const encryptPassword = await bcrypt.hash(newPassword, 12);
   try {
