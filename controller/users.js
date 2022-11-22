@@ -42,7 +42,7 @@ const createUser = async (req, res) => {
 
 const editUser = async (req, res) => {
   const { id, user_name, email, password, newPassword } = req.body;
-  const compare = await bcryptCheck(id, password);
+  const compare = await bcryptCheck(user_name, password);
   const encryptPassword = await bcrypt.hash(newPassword, 12);
   try {
     if (compare) {
@@ -54,7 +54,7 @@ const editUser = async (req, res) => {
         },
         {
           where: {
-            id,
+            user_name,
           },
         }
       );
@@ -64,6 +64,20 @@ const editUser = async (req, res) => {
     }
   } catch (error) {
     res.status(400).json({ message: error.message });
+  }
+};
+
+const login = async (req, res) => {
+  const { user_name, password } = req.body;
+  try {
+    const compare = await bcryptCheck(user_name, password);
+    compare.bcryptCheck
+      ? res
+          .status(200)
+          .json({ message: "login success", result: compare.userData })
+      : res.status(400).json({ message: "password not match!" });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
   }
 };
 
@@ -115,4 +129,5 @@ module.exports = {
   getUsers,
   editUser,
   createUser,
+  login,
 };

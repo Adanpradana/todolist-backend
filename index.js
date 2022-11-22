@@ -12,9 +12,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //users
-router.get("/main/api/users", users.getUsers);
-router.post("/main/api/users", users.createUser);
-router.put("/main/api/users", users.editUser);
+router.get("/users", users.getUsers);
+router.post("/users", users.createUser);
+router.put("/users", users.editUser);
+router.post("/users/login", users.login);
 // router.delete("/main/api/users/:id", users.findUser);
 // router.get("/main/api/users/todolist", users.getUsersTodo);
 
