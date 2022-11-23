@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const db = require("../database/connection");
-const user = db.define("user", {
+const todolist = db.define("todolist", {
   uuid: {
     type: Sequelize.DataTypes.STRING,
     defaultValue: Sequelize.DataTypes.UUIDV4,
@@ -9,26 +9,22 @@ const user = db.define("user", {
       notEmpty: true,
     },
   },
-  user_name: {
+  todolist: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true,
   },
-  email: {
+  description: {
     type: Sequelize.STRING,
-    allowNull: false,
-    unique: true,
+    allowNull: true,
   },
-  password: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    unique: false,
+  isdone: {
+    type: Sequelize.TINYINT,
+    allowNull: true,
   },
-  role: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    unique: false,
+  userId: {
+    type: Sequelize.INTEGER,
+    allowNull: true,
   },
 });
 
-module.exports = user;
+module.exports = todolist;

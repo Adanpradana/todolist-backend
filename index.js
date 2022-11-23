@@ -1,12 +1,12 @@
-const bodyParser = require("body-parser");
-const express = require("express");
-const app = express();
-const port = 3310;
-const router = express.Router();
 const { todolist } = require("./controller/controller");
 const { users } = require("./controller/controller");
-
+const user = require("./database/connection");
+const bodyParser = require("body-parser");
+const express = require("express");
+const router = express.Router();
 const cors = require("cors");
+const app = express();
+const port = 3310;
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -17,14 +17,15 @@ router.post("/users", users.createUser);
 router.put("/users", users.editUser);
 router.post("/users/login", users.login);
 // router.delete("/main/api/users/:id", users.findUser);
-// router.get("/main/api/users/todolist", users.getUsersTodo);
+router.get("/users/todolist/id", users.getUsersTodo);
 
+router.post("/users/todolist", todolist.post);
 // router.get("/main/api/todolist", todolist.get);
 // router.get("/main/api/todolist/search", todolist.search);
 // router.get("/main/api/todolist/find", todolist.find);
-// router.post("/main/api/todolist/add", todolist.post);
 // router.put("/main/api/:todo_id", todolist.update);
 // router.delete("/main/api/:todo_id", todolist.destroy);
 
+user.sync();
 app.use(router);
 app.listen(port, () => console.log(`listening in port ${port}`));

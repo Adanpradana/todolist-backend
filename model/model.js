@@ -1,16 +1,12 @@
-const todolist = require("./todolist");
-const users = require("./users");
 const model = {};
+const todolist = require("./todolists");
+const users = require("./users");
 
-// todolist.belongsTo(users, {
-//   foreignKey: "userId",
-//   as: "users",
-// });
-// users.hasMany(todolist, {
-//   foreignKey: "userId",
-//   as: "todolist",
-// });
+users.hasMany(todolist);
+todolist.belongsTo(users, {
+  foreignKey: "userId",
+});
 
-model.todolist = todolist;
+model.todolists = todolist;
 model.users = users;
 module.exports = model;

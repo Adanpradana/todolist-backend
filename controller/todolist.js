@@ -9,7 +9,11 @@ const get = async (req, res) => {
         // limit: 5,
       })
       .then((result) => {
-        result.length > 0 ? res.status(200).json({ message: "success get all data", data: result }) : res.status(400).json({ message: "no data found !" });
+        result.length > 0
+          ? res
+              .status(200)
+              .json({ message: "success get all data", data: result })
+          : res.status(400).json({ message: "no data found !" });
       });
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -18,17 +22,16 @@ const get = async (req, res) => {
 
 const post = async (req, res) => {
   try {
-    const { todo_id, userId, todo_list, deskripsi, isdone } = req.body;
-    const todolist = await model.todolist.create({
-      todo_id,
-      todo_list,
-      deskripsi,
+    const { todolist, description, isdone, userId } = req.body;
+    const response = await model.todolists.create({
+      todolist,
+      description,
       isdone,
       userId,
     });
     res.status(201).json({
       message: "success add todolist !",
-      data: todolist,
+      data: response,
     });
   } catch (error) {
     res.status(400).json({
@@ -97,7 +100,7 @@ const destroy = async (req, res) => {
         where: {
           todo_id,
         },
-      }) 
+      })
       .then(res.status(200).json({ message: "success delete todolist !" }));
   } catch (error) {
     res.status(400).json({ message: error.message });
