@@ -23,7 +23,7 @@ const get = async (req, res) => {
 const post = async (req, res) => {
   try {
     const { todolist, description, isdone, userId } = req.body;
-    const response = await model.todolists.create({
+    const response = await model.todolist.create({
       todolist,
       description,
       isdone,

@@ -1,5 +1,4 @@
-const { todolist } = require("./controller/controller");
-const { users } = require("./controller/controller");
+const { todolist, users, users_todolist } = require("./controller/controller");
 const user = require("./database/connection");
 const bodyParser = require("body-parser");
 const express = require("express");
@@ -17,9 +16,10 @@ router.post("/users", users.createUser);
 router.put("/users", users.editUser);
 router.post("/users/login", users.login);
 // router.delete("/main/api/users/:id", users.findUser);
-router.get("/users/todolist/id", users.getUsersTodo);
+router.get("/users/:user_name/todolist", users_todolist.getUsersTodo);
+router.get("/users/login/todolist", users_todolist.getUserLogin);
 
-router.post("/users/todolist", todolist.post);
+router.post("/users/todolist/all", todolist.post);
 // router.get("/main/api/todolist", todolist.get);
 // router.get("/main/api/todolist/search", todolist.search);
 // router.get("/main/api/todolist/find", todolist.find);
