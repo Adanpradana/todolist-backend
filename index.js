@@ -19,12 +19,13 @@ router.post("/users/login", users.login);
 router.get("/users/:user_name/todolist", users_todolist.getUsersTodo);
 router.get("/users/login/todolist", users_todolist.getUserLogin);
 
-router.post("/users/todolist/all", todolist.post);
+router.post("/users/todolist/", todolist.post);
+router.put("/users/todolist/", todolist.update);
+router.delete("/users/todolist", todolist.destroy);
 // router.get("/main/api/todolist", todolist.get);
 // router.get("/main/api/todolist/search", todolist.search);
 // router.get("/main/api/todolist/find", todolist.find);
 // router.put("/main/api/:todo_id", todolist.update);
-// router.delete("/main/api/:todo_id", todolist.destroy);
 
 user.sync();
 app.use(router);

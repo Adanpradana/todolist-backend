@@ -21,14 +21,6 @@ const getUsersTodo = async (req, res) => {
   }
 };
 
-const createUsersTodo = async (req, res) => {
-  try {
-    const result = await model.users.create({
-      include: [],
-    });
-  } catch (error) {}
-};
-
 getUserLogin = async (req, res) => {
   const { user_name } = req.body;
   try {

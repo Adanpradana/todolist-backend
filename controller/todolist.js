@@ -25,8 +25,6 @@ const post = async (req, res) => {
     const { todolist, description, isdone, userId } = req.body;
     const response = await model.todolist.create({
       todolist,
-      description,
-      isdone,
       userId,
     });
     res.status(201).json({
@@ -41,18 +39,16 @@ const post = async (req, res) => {
 };
 
 const update = async (req, res) => {
-  const { todo_list, deskripsi, isdone, userId } = req.body;
+  const { todolist, userId, id } = req.body;
   try {
     const update = await model.todolist.update(
       {
-        todo_list,
-        deskripsi,
-        isdone,
+        todolist,
         userId,
       },
       {
         where: {
-          todo_id: req.params.todo_id,
+          id,
         },
       }
     );
@@ -93,12 +89,12 @@ const search = async (req, res) => {
 };
 
 const destroy = async (req, res) => {
-  const { todo_id } = req.params;
+  const { id } = req.body;
   try {
     await model.todolist
       .destroy({
         where: {
-          todo_id,
+          id,
         },
       })
       .then(res.status(200).json({ message: "success delete todolist !" }));

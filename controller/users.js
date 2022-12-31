@@ -25,8 +25,8 @@ const createUser = async (req, res) => {
     const result = await model.users.create({
       user_name,
       email,
-      password: encryptPassword,
       role,
+      password: encryptPassword,
     });
     res.status(200).json({ message: "username created 🙌", data: result });
   } catch (error) {
@@ -68,7 +68,7 @@ const login = async (req, res) => {
     compare.bcryptCheck
       ? res
           .status(200)
-          .json({ message: "login success", result: compare.userData })
+          .json({ message: "login success !", result: compare.userData })
       : res.status(400).json({ message: "password not match!" });
   } catch (error) {
     res.status(404).json({ message: error.message });
