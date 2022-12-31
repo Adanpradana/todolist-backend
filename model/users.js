@@ -24,11 +24,6 @@ const user = db.define("user", {
     allowNull: false,
     unique: false,
   },
-  role: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    unique: false,
-  },
 });
 
 module.exports = user;

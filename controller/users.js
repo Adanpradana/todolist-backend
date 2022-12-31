@@ -19,13 +19,12 @@ const getUsers = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
-  const { user_name, email, password, role } = req.body;
+  const { user_name, email, password } = req.body;
   const encryptPassword = await bcrypt.hash(password, 12);
   try {
     const result = await model.users.create({
       user_name,
       email,
-      role,
       password: encryptPassword,
     });
     res.status(200).json({ message: "username created 🙌", data: result });
