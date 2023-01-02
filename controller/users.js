@@ -27,9 +27,7 @@ const createUser = async (req, res) => {
       email,
       password: encryptPassword,
     });
-    res
-      .status(200)
-      .json(JSON.parse({ message: "username created 🙌", data: result }));
+    res.status(200).json({ message: "username created 🙌", data: result });
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
