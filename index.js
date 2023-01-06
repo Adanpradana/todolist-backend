@@ -10,6 +10,7 @@ const port = 3001;
 app.use(bodyParser.json());
 app.use(cors());
 
+router.get("/", users.home);
 //users
 router.get("/users", users.getUsers);
 router.post("/users", users.createUser);

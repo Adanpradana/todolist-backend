@@ -4,6 +4,14 @@ const bcrypt = require("bcrypt");
 
 const bcryptCheck = require("../utils/bcrypt");
 
+const home = async (req, res) => {
+  try {
+    await res.send("API RUNNING");
+  } catch (error) {
+    res.send(error.message);
+  }
+};
+
 const getUsers = async (req, res) => {
   try {
     await model.users.findAll().then((result) => {
@@ -79,4 +87,5 @@ module.exports = {
   editUser,
   createUser,
   login,
+  home,
 };
