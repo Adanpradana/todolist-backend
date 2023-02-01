@@ -19,7 +19,7 @@ const todolist = db.define("todolist", {
   },
   isdone: {
     type: Sequelize.TINYINT,
-    allowNull: true,
+    allowNull: false,
   },
   userId: {
     type: Sequelize.INTEGER,
