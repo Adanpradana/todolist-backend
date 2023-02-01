@@ -1,6 +1,5 @@
 const Sequelize = require("sequelize");
-const secretKey = process.env.APP_TOKEN_PASSWORD;
-const db = new Sequelize("todolist", "root", secretKey, {
+const db = new Sequelize("todolist", "root", "Adan1307@todolist", {
   host: "localhost",
   dialect: "mysql",
 });
