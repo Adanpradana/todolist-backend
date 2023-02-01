@@ -22,10 +22,10 @@ const get = async (req, res) => {
 
 const post = async (req, res) => {
   try {
-    const { todolist, description, isdone, userId } = req.body;
+    const { userId, todolist, description, isdone } = req.body;
     const response = await model.todolist.create({
-      todolist,
       userId,
+      todolist,
       isdone,
     });
     res.status(201).json({
