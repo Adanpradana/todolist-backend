@@ -26,6 +26,7 @@ const post = async (req, res) => {
     const response = await model.todolist.create({
       todolist,
       userId,
+      isdone,
     });
     res.status(201).json({
       message: "success add todolist !",
@@ -39,12 +40,13 @@ const post = async (req, res) => {
 };
 
 const update = async (req, res) => {
-  const { todolist, userId, id } = req.body;
+  const { todolist, isdone, userId, id } = req.body;
   try {
     const update = await model.todolist.update(
       {
-        todolist,
         userId,
+        todolist,
+        isdone,
       },
       {
         where: {
